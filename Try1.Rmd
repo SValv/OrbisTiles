@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html style="height: 100%; margin:0%;">
+<head>
+<title>Orbis Map</title>
+
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+            crossorigin=""
+          />
+
+<script
+            src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""> 
+</script>
+</head>
+<body style="height: 100%; margin: 0%;">
+
+<div id="map" style="width: 100%; height: 100%; background: #888888; margin: 0%;"></div>
+
+<script type="text/javascript">
+// Variables
+                var mapSW = [1048576,1043576],
+                    mapNE = [1055232,1048576];
+
+// Declare Map Object
+                var map = L.map('map').setView([0.4,0.5],10);
+
+// Reference the tiles
+                L.tileLayer('map/Z{z}/{y}/{x}.png', {
+                  minZoom: 9,
+                  maxZoom: 13,
+                  continuousWorld: false,
+                  noWrap: true,
+                  crs: L.CRS.Simple,
+                }).addTo(map);
+
+map.setMaxBounds(new L.LatLngBounds(
+                  map.unproject(mapSW, map.getMaxZoom()),
+                  map.unproject(mapNE, map.getMaxZoom())
+                ));
+
+// Markers and Popups
+
+// Helper Marker
+                //var marker = L.marker([0,0], {
+                //  draggable: true,
+                //}).addTo(map)
+                //marker.bindPopup('<b>Eisland: </b><a href="https://svalv.github.io/Orbis/das-eisland.html">Link</a>');
+
+//marker.on('dragend', function(e) {
+                //  marker.getPopup().setContent('Clicked ' + marker.getLatLng().toString() + '<br />'
+                //  + 'Pixels ' + map.project(marker.getLatLng(), map.getMaxZoom().toString()))
+                //  .openOn(map);
+                //});
+
+var grayIcon = L.icon({
+                  iconUrl: 'scripts/leaflet/images/marker_gray2.png',
+iconSize:     [30, 30], // size of the icon
+                  iconAnchor:   [15, 30], // point of the icon which will correspond to marker's location
+                  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+                });
+                //L.marker([0, 0], {icon: grayIcon}).addTo(map);
+
+var marker_eisland = L.marker(map.unproject([1055076, 1044964], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Eisland: </b><a href="https://svalv.github.io/Orbis/das-eisland.html">Link</a>');
+
+var marker_skaen = L.marker(map.unproject([1053448, 1044040], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Skaen: </b><a href="https://svalv.github.io/Orbis/Skaen.html">Link</a>');
+
+var marker_herzland = L.marker(map.unproject([1054588, 1046760], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Herzland: </b><a href="https://svalv.github.io/Orbis/das-herzland.html">Link</a>');
+
+var marker_nors = L.marker(map.unproject([1052684, 1045200], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Nors: </b><a href="https://svalv.github.io/Orbis/nors.html">Link</a>');
+
+var marker_yondalla = L.marker(map.unproject([1055092, 1048052], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Yondalla: </b><a href="https://svalv.github.io/Orbis/yondalla.html">Link</a>');
+
+var marker_eldria = L.marker(map.unproject([1051884, 1047664], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Eldria: </b><a href="https://svalv.github.io/Orbis/die-region-eldria.html">Link</a>');
+
+var marker_himmelsspitzen = L.marker(map.unproject([1051496, 1045176], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Das Himmelsspitzen Gebirge: </b><a href="https://svalv.github.io/Orbis/das-himmelsspitzen-gebirge.html">Link</a>');
+
+var marker_eisenroteWueste = L.marker(map.unproject([1049180, 1048176], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Eisenrote Wueste: </b><a href="https://svalv.github.io/Orbis/EisenroteWueste.html">Link</a>');
+
+var marker_grau = L.marker(map.unproject([1049856, 1044588], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Graue Ödnis: </b><a href="https://svalv.github.io/Orbis/die-graue-%C3%B6dnis.html">Link</a>');
+
+var marker_eid_rah_kari = L.marker(map.unproject([1049800, 1045800], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Eid Rah kari: </b><a href="https://svalv.github.io/Orbis/eid-rah-kari.html">Link</a>');
+
+var marker_grenzland = L.marker(map.unproject([1054516, 1048500], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Grenzland: </b><a href="https://svalv.github.io/Orbis/das-grenzland.html">Link</a>');
+
+var marker_silvanacia = L.marker(map.unproject([1053284, 1047864], map.getMaxZoom()), {icon: grayIcon})
+                    .bindPopup('<b>Silva Nacia: </b><a href="https://svalv.github.io/Orbis/RegionSilvaNacia.html">Link</a>');
+
+var polygon = L.polygon([
+                    map.unproject([1054516, 1048500], map.getMaxZoom()),
+                    map.unproject([1054588, 1046760], map.getMaxZoom()),
+                    map.unproject([1053448, 1044040], map.getMaxZoom()),
+                    map.unproject([1052684, 1045200], map.getMaxZoom())
+                ], {color: 'green'});
+
+var circle = L.circle(map.unproject([1053284, 1047864], map.getMaxZoom()), {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.2,
+                    radius: 5000
+                });
+
+                //Layer Groups
+var lg_area = L.layerGroup([marker_eisland,marker_skaen,marker_herzland,
+                                            marker_nors,marker_yondalla,marker_eldria,
+                                            marker_himmelsspitzen,marker_eisenroteWueste,
+                                            marker_grau,marker_eid_rah_kari,
+                                            marker_grenzland,marker_silvanacia]);
+                var lg_language = L.layerGroup([circle, polygon]);
+
+var overlays = {
+                  "Areas" : lg_area,
+                  "Language" : lg_language
+                  //here I can add more layers,e.g. cities, persons,...
+                }
+                //Add layer control
+                L.control.layers(null, overlays).addTo(map);
+          </script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+This projects aims to create an interactive fantasy map of the "Orbis Astea" world
+based on a jpeg map. Several layer like cities, languages and religions give a deep insight into the world.
+
+index[version].html
+
+VERSION
+
+*********  1  ****************************************************
+
+1: initial version with map based on google tiles via GlobalMapper and city layer.
+
+GlobalMapper
+- open jpeg
+- export as web file (google maps format) (used zoom levels = 5)
+
+*********  2  ****************************************************
+
+2: added polygon/circle layer to map, code cleansing
+--> to-do: how to fix the generation of the google tiles?
+
+*********  3  ****************************************************
+
+3: avoided google tiles and used directy the jpeg, e.g.:
+
+var mymap= L.imageOverlay('./source/images/map.png', bounds).addTo(map);
+
+used bounds due to an 8k image.
+
+Added icons to the layer names in the control
+
+Changed leaflet.js/leaflet.css from file to link
+--> folder "scripts" becomes unnecessary except folder "images"
+--> before deletion change paths to images in file!
+
+--> to-do: fix the map bounds!
+
+******************************************************
+
+Overall to do:
+-define layers and borders for the layers (religions, languages,....)
+-define content of pop-ups
+
+******************************************************
+
+
+dont delete yet:
+
+
+1048568, 1043624    1055192, 1043632
+
+1048552, 1048568    1055176, 1048568
+
+4096*256=1.048.576
+4122*256=1.055.232
